@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-
-import UserService from "../services/user.service";
+import { Router, Switch, Route, Link } from "react-router-dom";
+import AllUsersService from "../services/all-users.service";
 
 export default class BoardAdmin extends Component {
   constructor(props) {
@@ -13,10 +13,11 @@ export default class BoardAdmin extends Component {
   }
 
   componentDidMount() {
-    UserService.getAdminBoard().then(
+    AllUsersService.getAllUsers().then(
       (response) => {
         const tempListOfUsers = [];
         response.data.forEach((res) => {
+          console.log(res);
           tempListOfUsers.push(res);
         });
         this.setState({
@@ -36,13 +37,29 @@ export default class BoardAdmin extends Component {
     );
   }
 
+  deleteUser = (id) => {
+    AllUsersService.deleteUser(id);
+    window.location.reload();
+  };
+
+  updateUser = () => {};
+
   render() {
     let { listOfUsers } = this.state;
     return (
       <div className="container">
+        <br></br>
         <h3>{this.state.content}</h3>
-        <button>Add new Voter</button>
-        <table class="table table-striped">
+        <Link
+          to={"/add"}
+          className="navbar-brand"
+          className="alert alert-success"
+        >
+          Add new Voter
+        </Link>
+        <br></br>
+        <br></br>
+        <table className="table table-striped">
           <thead>
             <tr>
               <th scope="col-sm">#</th>
@@ -58,7 +75,15 @@ export default class BoardAdmin extends Component {
                 <td>{user.username}</td>
                 <td>{user.email}</td>
                 <td>
-                  <button>Delete</button> <button>Update</button>
+                  <button
+                    onClick={() => this.deleteUser(user.id)}
+                    className="btn btn-danger"
+                  >
+                    Delete
+                  </button>{" "}
+                  <Link to={`/users/${user.id}`} className="btn btn-warning">
+                    Update{" "}
+                  </Link>
                 </td>
               </tr>
             ))}

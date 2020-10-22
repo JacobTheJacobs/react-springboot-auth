@@ -11,6 +11,8 @@ import Profile from "./components/profile.component";
 import BoardUser from "./components/board-user.component";
 import BoardModerator from "./components/board-moderator.component";
 import BoardAdmin from "./components/board-admin.component";
+import UserDetails from "./components/user-details.component";
+import AddUser from "./components/add-new-user.component";
 
 import { logout } from "./actions/auth";
 import { clearMessage } from "./actions/message";
@@ -130,6 +132,8 @@ class App extends Component {
               <Route path="/user" component={BoardUser} />
               <Route path="/mod" component={BoardModerator} />
               <Route path="/admin" component={BoardAdmin} />
+              <Route path="/users/:id" component={UserDetails} />
+              <Route path="/add" component={AddUser} />
             </Switch>
           </div>
         </div>

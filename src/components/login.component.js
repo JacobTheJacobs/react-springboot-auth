@@ -26,8 +26,8 @@ class Login extends Component {
     this.onChangePassword = this.onChangePassword.bind(this);
 
     this.state = {
-      username: "",
-      password: "",
+      username: "demo",
+      password: "demodemo",
       loading: false,
     };
   }
