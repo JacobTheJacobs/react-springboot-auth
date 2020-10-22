@@ -59,36 +59,38 @@ export default class BoardAdmin extends Component {
         </Link>
         <br></br>
         <br></br>
-        <table className="table table-striped">
-          <thead>
-            <tr>
-              <th scope="col-sm">#</th>
-              <th scope="col-sm">Username</th>
-              <th scope="col-sm">Email</th>
-              <th scope="col-sm">Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {listOfUsers.map((user, _) => (
-              <tr key={user.id}>
-                <th scope="row">{user.id}</th>
-                <td>{user.username}</td>
-                <td>{user.email}</td>
-                <td>
-                  <button
-                    onClick={() => this.deleteUser(user.id)}
-                    className="btn btn-danger"
-                  >
-                    Delete
-                  </button>{" "}
-                  <Link to={`/users/${user.id}`} className="btn btn-warning">
-                    Update{" "}
-                  </Link>
-                </td>
+        <div className="table-responsive">
+          <table className="table">
+            <thead>
+              <tr>
+                <th scope="col-sm">ID</th>
+                <th scope="col-sm">Username</th>
+                <th scope="col-sm">Email</th>
+                <th scope="col-sm">Actions</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {listOfUsers.map((user, _) => (
+                <tr key={user.id}>
+                  <th scope="row">{user.id}</th>
+                  <td>{user.username}</td>
+                  <td>{user.email}</td>
+                  <td>
+                    <button
+                      onClick={() => this.deleteUser(user.id)}
+                      className="btn btn-danger"
+                    >
+                      Delete
+                    </button>{" "}
+                    <Link to={`/users/${user.id}`} className="btn btn-warning">
+                      Update{" "}
+                    </Link>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     );
   }
