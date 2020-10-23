@@ -11,14 +11,15 @@ import AllUsersService from "../services/all-users.service";
 
 //////////////////////////////////////////////////////////////Get users
 export const getUsers = () => (dispatch) => {
-  AllUsersService.getAllUsers().then((users) => {
-    dispatch({
-      type: GET_USERS,
-      payload: users,
-    });
+  return AllUsersService.getAllUsers().then(
+    (users) => {
+      dispatch({
+        type: GET_USERS,
+        payload: users,
+      });
 
-    return Promise.resolve();
-  }),
+      return Promise.resolve();
+    },
     (error) => {
       const message =
         (error.response &&
@@ -33,19 +34,21 @@ export const getUsers = () => (dispatch) => {
       });
 
       return Promise.reject();
-    };
+    }
+  );
 };
 
 //////////////////////////////////////////////////////////////Get users by id
 export const getUsersById = (userId) => (dispatch) => {
-  AllUsersService.getUserById(userId).then((user) => {
-    dispatch({
-      type: GET_USER_BY_ID,
-      payload: user,
-    });
+  return AllUsersService.getUserById(userId).then(
+    (user) => {
+      dispatch({
+        type: GET_USER_BY_ID,
+        payload: user,
+      });
 
-    return Promise.resolve();
-  }),
+      return Promise.resolve();
+    },
     (error) => {
       const message =
         (error.response &&
@@ -60,23 +63,25 @@ export const getUsersById = (userId) => (dispatch) => {
       });
 
       return Promise.reject();
-    };
+    }
+  );
 };
 
 ////////////////////////////////////////////////////////////////////////////////Create User
 export const createNewUser = (username, email, password) => (dispatch) => {
-  AllUsersService.createNewUser(username, email, password).then((response) => {
-    dispatch({
-      type: ADD_USER,
-    });
+  return AllUsersService.createNewUser(username, email, password).then(
+    (response) => {
+      dispatch({
+        type: ADD_USER,
+      });
 
-    dispatch({
-      type: SET_MESSAGE,
-      payload: response.data.message,
-    });
+      dispatch({
+        type: SET_MESSAGE,
+        payload: response.data.message,
+      });
 
-    return Promise.resolve();
-  }),
+      return Promise.resolve();
+    },
     (error) => {
       const message =
         (error.response &&
@@ -91,24 +96,26 @@ export const createNewUser = (username, email, password) => (dispatch) => {
       });
 
       return Promise.reject();
-    };
+    }
+  );
 };
 
 ////////////////////////////////////////////////////////////////////////////////Create User
-export const deleteUser = (userId) => (dispatch) => {
-  AllUsersService.deleteUser(userId).then((response) => {
-    dispatch({
-      type: DELETE_USER,
-      payload: "",
-    });
+export const updateUser = (username, email, password, userId) => (dispatch) => {
+  return AllUsersService.updateUser(username, email, password, userId).then(
+    (response) => {
+      dispatch({
+        type: UPDATE_USER,
+        payload: response,
+      });
 
-    dispatch({
-      type: SET_MESSAGE,
-      payload: response.data.message,
-    });
+      dispatch({
+        type: SET_MESSAGE,
+        payload: response.data.message,
+      });
 
-    return Promise.resolve();
-  }),
+      return Promise.resolve();
+    },
     (error) => {
       const message =
         (error.response &&
@@ -123,5 +130,6 @@ export const deleteUser = (userId) => (dispatch) => {
       });
 
       return Promise.reject();
-    };
+    }
+  );
 };

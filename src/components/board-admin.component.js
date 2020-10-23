@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import { Router, Switch, Route, Link } from "react-router-dom";
 import AllUsersService from "../services/all-users.service";
+import { connect } from "react-redux";
+import { getUsers } from "../actions/users";
 
-export default class BoardAdmin extends Component {
+class BoardAdmin extends Component {
   constructor(props) {
     super(props);
 
@@ -95,3 +97,5 @@ export default class BoardAdmin extends Component {
     );
   }
 }
+
+export default BoardAdmin;
