@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Router, Switch, Route, Link } from "react-router-dom";
+import { Router, Switch, Route, Link, HashRouter } from "react-router-dom";
 
 import "./App.css";
 
@@ -55,7 +55,7 @@ class App extends Component {
     const { currentUser, showModeratorBoard, showAdminBoard } = this.state;
 
     return (
-      <Router history={history}>
+      <HashRouter history={history}>
         <div style={{ width: "100%" }}>
           <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
             <Link to={"/"} className="navbar-brand">
@@ -140,7 +140,7 @@ class App extends Component {
             </Switch>
           </div>
         </div>
-      </Router>
+      </HashRouter>
     );
   }
 }
