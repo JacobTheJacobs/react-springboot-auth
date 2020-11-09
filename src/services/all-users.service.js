@@ -1,7 +1,7 @@
 import axios from "axios";
 import authHeader from "./auth-header";
 
-const API_URL = "http://localhost:8080/api/test/users";
+const API_URL = "http://dev.stylingbig.com/api/test/users";
 
 class AllUsersService {
   getAllUsers() {
